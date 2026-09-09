@@ -1,0 +1,87 @@
+SUBJECT: You're Invited to the Pageant Atlas Private Beta 👑
+
+Hi {{first_name}},
+
+Thank you for applying to help test Pageant Atlas. Your application has been approved for our private Android beta!
+
+Please make sure you are signed into Google Play with the Google account that was approved for testing:
+
+Approved Google Play Email:
+{{google_play_email}}
+
+STEP 1 — JOIN THE PAGEANT ATLAS BETA
+
+Open the beta enrollment page while signed into your approved Google account:
+
+Join on the Web:
+https://play.google.com/apps/testing/com.pageantatlas.app
+
+Select "Become a tester" if Google asks you to opt in.
+
+STEP 2 — INSTALL PAGEANT ATLAS
+
+After joining the beta, install Pageant Atlas from Google Play:
+
+Join on Android / Install Pageant Atlas:
+https://play.google.com/store/apps/details?id=com.pageantatlas.app
+
+If you already have Pageant Atlas installed, make sure you have the newest beta update.
+
+STEP 3 — COMPLETE THE PRIVATE BETA AGREEMENT
+
+When you first enter the private beta, Pageant Atlas will ask you to review and electronically accept the Confidential Beta Tester NDA and Private Beta Tester Participation Agreement.
+
+You can also print or save a copy of the signed agreement for your records.
+
+YOUR BETA TESTER HUB
+
+You can return to the Pageant Atlas beta page at any time for application information, access links, beta instructions, privacy information, and support:
+
+{{beta_website_url}}
+
+WHAT WE'D LOVE YOU TO TEST
+
+Please use Pageant Atlas naturally and tell us about anything that does not feel right, including:
+
+• Missing or incorrect pageant information
+• Pageants that should appear in Discover but do not
+• Profile information or photos that do not save properly
+• Family and profile switching
+• Journey and planning tools
+• Wardrobe
+• Vendors
+• Marketplace
+• Community features
+• Speaking and interview practice
+• Navigation or display problems
+• Sign-in problems
+• Crashes, freezes, or slowdowns
+• Features you wish Pageant Atlas had
+
+Whenever possible, please use the Beta Feedback / Report App Bug option inside Pageant Atlas. That helps us receive useful app and device information along with your report.
+
+If an app problem prevents you from sending feedback, contact us directly:
+
+bigboomcreations@gmail.com
+
+A QUICK PRIVATE BETA REMINDER
+
+Pageant Atlas is still under active development. Please keep unreleased beta features, screenshots, recordings, private testing links, and builds confidential unless you are sharing them directly with us for testing or support.
+
+Thank you for helping us build something genuinely useful for contestants, families, directors, coaches, judges, vendors, and the wider pageant community.
+
+We're excited to have you with us.
+
+Randy Shockley
+Pageant Atlas
+Big Boom Creations
+bigboomcreations@gmail.com
+{{beta_website_url}}
+
+---
+TEMPLATE FIELDS
+{{first_name}} = tester's first name
+{{google_play_email}} = approved Google Play email
+{{beta_website_url}} = canonical Vercel beta website URL
+
+These fields do not autofill in a normal pasted email. They are intentionally written as merge fields so the future Pageant Atlas founder beta inbox/email generator can populate them automatically from the approved application record.

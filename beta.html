@@ -160,6 +160,9 @@ textarea{min-height:110px;resize:vertical}
 .check{display:flex;gap:9px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.88rem;font-weight:650;color:var(--plum2)}
 .check input{width:auto;margin-top:4px}
 .check small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
+.beta-verification{margin:16px 0 14px;display:grid;gap:7px}
+.beta-verification-label{font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.055em;color:#6d4c5a}
+.cf-turnstile{min-height:65px}
 .submit{width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,#8c325b,#692342);color:#fff;padding:13px 16px;font-weight:900;cursor:pointer}
 .submit:disabled{opacity:.58;cursor:wait}
 .status{margin-top:13px;padding:13px 14px;border-radius:13px;display:none}
@@ -396,6 +399,10 @@ footer{border-top:1px solid var(--line);background:rgba(255,250,245,.72);padding
           <label class="check"><input id="age18" type="checkbox" required><span>I confirm that I meet the current eligibility requirements for private beta participation.<small>The current private beta application process is limited to testers age 18 or older.</small></span></label>
           <label class="check"><input id="contactConsent" type="checkbox" required><span>I agree that Pageant Atlas may contact me about beta access, testing updates and beta-related support.</span></label>
         </div>
+        <div class="beta-verification">
+          <div class="beta-verification-label">Security check</div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEtoWD6k7cL0uZpZ" data-action="pageant_atlas_beta_application" data-theme="light"></div>
+        </div>
         <button class="submit" id="submitBtn" type="submit">Submit My Beta Application</button>
         <div class="status" id="formStatus" role="status" aria-live="polite"></div>
         <div class="privacy-note">Your application is used to administer the Pageant Atlas beta and related support. We do not sell beta applicant information. See our <a href="privacy.html">Privacy Policy</a>.</div>
@@ -481,12 +488,12 @@ footer{border-top:1px solid var(--line);background:rgba(255,250,245,.72);padding
   </div>
 </footer>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
 (function(){
   "use strict";
-  var SUPABASE_URL="https://iomlvngtcsjkyjgggoxf.supabase.co";
-  var PUBLISHABLE_KEY="sb_publishable_XNYTKbeIZ6aWDda-U1voZA_0XZHI50h";
-  var FORM_VERSION="2026-09-09.2";
+  var ENDPOINT="https://iomlvngtcsjkyjgggoxf.supabase.co/functions/v1/pageant-atlas-beta-application";
+  var FORM_VERSION="2026-09-09.3";
   var form=document.getElementById("betaForm");
   var role=document.getElementById("role");
   var otherWrap=document.getElementById("otherRoleWrap");
@@ -510,42 +517,64 @@ footer{border-top:1px solid var(--line);background:rgba(255,250,245,.72);padding
     event.preventDefault();
     status.className="status";
     if(!form.reportValidity()) return;
+
+    var turnstileInput=form.querySelector('input[name="cf-turnstile-response"]');
+    var turnstileToken=turnstileInput ? turnstileInput.value : "";
+    if(!turnstileToken){
+      show("Please complete the security check before submitting your application.","err");
+      return;
+    }
+
     submit.disabled=true;
     submit.textContent="Submitting…";
 
     var payload={
-      p_full_name:document.getElementById("fullName").value.trim(),
-      p_google_play_email:document.getElementById("email").value.trim(),
-      p_state:document.getElementById("state").value,
-      p_pageant_role:role.value,
-      p_role_other:roleOther.value.trim()||null,
-      p_android_device:document.getElementById("device").value.trim()||null,
-      p_android_version:document.getElementById("androidVersion").value.trim()||null,
-      p_testing_interests:document.getElementById("interests").value.trim()||null,
-      p_age_18_confirmed:document.getElementById("age18").checked,
-      p_contact_consent:document.getElementById("contactConsent").checked,
-      p_website:document.getElementById("website").value,
-      p_form_version:FORM_VERSION
+      fullName:document.getElementById("fullName").value.trim(),
+      googlePlayEmail:document.getElementById("email").value.trim(),
+      state:document.getElementById("state").value,
+      pageantRole:role.value,
+      roleOther:roleOther.value.trim()||null,
+      androidDevice:document.getElementById("device").value.trim()||null,
+      androidVersion:document.getElementById("androidVersion").value.trim()||null,
+      testingInterests:document.getElementById("interests").value.trim()||null,
+      age18Confirmed:document.getElementById("age18").checked,
+      contactConsent:document.getElementById("contactConsent").checked,
+      website:document.getElementById("website").value,
+      formVersion:FORM_VERSION,
+      turnstileToken:turnstileToken
     };
 
     try{
-      var response=await fetch(SUPABASE_URL+"/rest/v1/rpc/submit_beta_test_application",{
+      var response=await fetch(ENDPOINT,{
         method:"POST",
-        headers:{"apikey":PUBLISHABLE_KEY,"Content-Type":"application/json"},
+        headers:{"Content-Type":"application/json"},
+        credentials:"omit",
         body:JSON.stringify(payload)
       });
+
       var data=null;
       try{data=await response.json();}catch(e){}
-      if(!response.ok){
-        throw new Error((data&&data.message)||(data&&data.error_description)||"We could not submit your application. Please try again.");
+
+      if(!response.ok || !data || data.ok!==true){
+        throw new Error((data&&data.error)||"We could not submit your application. Please try again.");
       }
-      show((data&&data.message)||"Thanks! Your beta application has been received. If approved, we will contact you by email.","ok");
+
+      show(data.message||"Thanks! Your beta application has been received. If approved, we will contact you by email.","ok");
       form.reset();
       otherWrap.hidden=true;
       roleOther.required=false;
+
+      if(window.turnstile){
+        try{window.turnstile.reset();}catch(e){}
+      }
+
       status.scrollIntoView({behavior:"smooth",block:"center"});
     }catch(error){
       show((error&&error.message)||"We could not submit your application. Please try again or email bigboomcreations@gmail.com.","err");
+
+      if(window.turnstile){
+        try{window.turnstile.reset();}catch(e){}
+      }
     }finally{
       submit.disabled=false;
       submit.textContent="Submit My Beta Application";

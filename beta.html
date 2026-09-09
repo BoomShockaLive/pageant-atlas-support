@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6dfe6">
+  <title>Join the Pageant Atlas Private Beta</title>
+  <meta name="description" content="Apply to join the Pageant Atlas private Android beta and help shape a pageant discovery, planning, family, wardrobe, vendor and community platform.">
+  <meta name="robots" content="index,follow">
+  <style>
+    :root{
+      --cream:#fffaf5;--paper:#fffdf9;--blush:#f6dfe6;--rose:#a65174;
+      --plum:#4b2d39;--muted:#75636b;--gold:#c8a45b;--gold-soft:#ead7ad;
+      --line:#eadde1;--success:#2f7657;--danger:#a53d4f;
+      --shadow:0 18px 50px rgba(75,45,57,.10)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--plum);
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.58;
+      background:
+        radial-gradient(circle at 8% 3%,rgba(246,223,230,.95),transparent 27rem),
+        radial-gradient(circle at 94% 16%,rgba(234,215,173,.36),transparent 27rem),
+        linear-gradient(180deg,var(--cream),#fff 48%,#fff9f7)
+    }
+    a{color:var(--rose)}
+    button,input,select,textarea{font:inherit}
+    .wrap{width:min(1040px,calc(100% - 28px));margin:auto}
+    header{text-align:center;padding:48px 0 24px}
+    .mark{
+      width:94px;height:94px;border-radius:28px;margin:0 auto 16px;display:grid;
+      place-items:center;position:relative;background:linear-gradient(145deg,#fff 8%,var(--blush) 64%,var(--gold-soft));
+      border:1px solid rgba(166,81,116,.14);box-shadow:var(--shadow)
+    }
+    .crown{font-size:47px;color:var(--gold);transform:translateY(-5px)}
+    .pin{position:absolute;left:50%;bottom:14px;transform:translateX(-50%) rotate(45deg);width:18px;height:18px;border-radius:50% 50% 50% 0;background:var(--rose)}
+    .eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-size:.77rem;font-weight:900}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
+    h1{font-size:clamp(2.25rem,7vw,4.3rem);line-height:1.02;margin:.45rem 0 .8rem}
+    .lede{max-width:790px;margin:auto;color:var(--muted);font-size:1.08rem}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:24px 0 0}
+    .btn{
+      border:1px solid var(--line);background:#fff;color:var(--plum);border-radius:999px;
+      padding:11px 16px;text-decoration:none;font-weight:850;cursor:pointer
+    }
+    .btn.primary{background:var(--rose);border-color:var(--rose);color:#fff}
+    .btn.gold{background:#fff8e8;border-color:var(--gold-soft);color:#6a5121}
+    main{padding:8px 0 60px}
+    .layout{display:grid;grid-template-columns:.86fr 1.14fr;gap:18px;align-items:start}
+    .card{background:rgba(255,253,249,.95);border:1px solid var(--line);border-radius:25px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow)}
+    .card + .card{margin-top:18px}
+    h2{font-size:1.65rem;margin:0 0 11px}
+    h3{font-size:1.08rem;margin:17px 0 7px}
+    p{margin:.55rem 0 .95rem}
+    ul{padding-left:1.25rem}
+    li{margin:.48rem 0}
+    .note{border-left:4px solid var(--gold);background:#fffaf0;border-radius:9px;padding:12px 14px;font-size:.92rem}
+    .approved{border:1px solid var(--gold-soft);border-radius:18px;background:#fff;padding:16px;margin-top:17px}
+    .approved .buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+    .approved a{text-align:center}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    .field.full{grid-column:1/-1}
+    label{display:block;font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;color:#674b58}
+    input,select,textarea{
+      width:100%;border:1px solid #dccccf;border-radius:13px;background:#fff;padding:12px;color:var(--plum);
+      outline:none;transition:border .15s,box-shadow .15s
+    }
+    input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(166,81,116,.11)}
+    textarea{min-height:105px;resize:vertical}
+    .hint{font-size:.78rem;color:var(--muted);margin-top:5px}
+    .checks{display:grid;gap:10px;margin:17px 0}
+    .check{display:flex;gap:9px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:650;color:var(--plum)}
+    .check input{width:auto;margin-top:4px}
+    .submit{width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,var(--rose),#7e3d5b);color:#fff;padding:13px 16px;font-weight:900;cursor:pointer}
+    .submit:disabled{opacity:.55;cursor:wait}
+    .status{margin-top:12px;padding:11px 13px;border-radius:12px;display:none}
+    .status.ok{display:block;background:#edf8f2;color:var(--success);border:1px solid #cde9da}
+    .status.err{display:block;background:#fff0f2;color:var(--danger);border:1px solid #efcfd5}
+    .privacy{font-size:.8rem;color:var(--muted);margin-top:12px}
+    .honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+    footer{text-align:center;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.84rem}
+    footer nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+    @media(max-width:780px){.layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+    @media(max-width:520px){header{padding-top:34px}.approved .buttons{grid-template-columns:1fr}.card{border-radius:20px}}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="mark" aria-hidden="true"><div class="crown">♕</div><div class="pin"></div></div>
+    <div class="eyebrow">Pageant Atlas • Private Beta</div>
+    <h1>Help Shape Pageant Atlas</h1>
+    <p class="lede">Pageant Atlas is being built to make pageant discovery, planning, family organization, preparation, wardrobe, vendors, marketplace tools and community easier to manage in one place. We’re inviting a limited group of adult Android testers to help us make it better.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#apply">Apply to Beta Test</a>
+      <a class="btn" href="#approved">Already approved?</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="layout">
+      <div>
+        <section class="card">
+          <h2>Who we're looking for</h2>
+          <p>You do not have to be a pageant expert or a technical tester. We want real-world feedback from people throughout the pageant community.</p>
+          <ul>
+            <li>Contestants and titleholders</li>
+            <li>Parents and guardians</li>
+            <li>Pageant directors and staff</li>
+            <li>Coaches, judges and vendors</li>
+            <li>Pageant supporters and enthusiasts</li>
+          </ul>
+
+          <h3>What beta testers do</h3>
+          <ul>
+            <li>Use Pageant Atlas naturally on an Android device.</li>
+            <li>Report bugs, missing or incorrect pageant information, and confusing experiences.</li>
+            <li>Suggest features and improvements.</li>
+            <li>Help us verify that family, privacy and safety features behave correctly.</li>
+          </ul>
+
+          <div class="note"><strong>Private beta:</strong> Applicants must be 18 or older. Approved testers will be asked to accept the Pageant Atlas NDA and Private Beta Tester Participation Agreement inside the app before testing.</div>
+
+          <div class="approved" id="approved">
+            <strong>Already approved for the beta?</strong>
+            <p class="hint">Use the same Google account email that was approved for the closed test.</p>
+            <div class="buttons">
+              <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.pageantatlas.app" rel="noopener">Join on Android</a>
+              <a class="btn gold" href="https://play.google.com/apps/testing/com.pageantatlas.app" rel="noopener">Join on the Web</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card" id="apply">
+        <div class="eyebrow">Beta Application</div>
+        <h2>Apply to Join</h2>
+        <p class="hint">Use the Google account email that you use with Google Play. If approved, that is the address we will add to the closed-test access list.</p>
+
+        <form id="betaForm" novalidate>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" autocomplete="name" maxlength="120" required>
+            </div>
+
+            <div class="field full">
+              <label for="email">Google Play account email</label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="320" required>
+              <div class="hint">This should be the Google account you will use to install Pageant Atlas.</div>
+            </div>
+
+            <div class="field">
+              <label for="state">State</label>
+              <select id="state" name="state" required>
+                <option value="">Select state</option>
+                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option>
+                <option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option>
+                <option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
+                <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+                <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option>
+                <option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+                <option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
+                <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+                <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option>
+                <option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+                <option>District of Columbia</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="role">Pageant involvement</label>
+              <select id="role" name="role" required>
+                <option value="">Select one</option>
+                <option value="contestant">Contestant / Titleholder</option>
+                <option value="parent_guardian">Parent / Guardian</option>
+                <option value="director">Director / Pageant Staff</option>
+                <option value="coach">Coach</option>
+                <option value="vendor">Vendor</option>
+                <option value="judge">Judge</option>
+                <option value="pageant_enthusiast">Pageant Enthusiast / Supporter</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field full" id="otherRoleWrap" hidden>
+              <label for="roleOther">Tell us your involvement</label>
+              <input id="roleOther" name="roleOther" maxlength="120">
+            </div>
+
+            <div class="field">
+              <label for="device">Android device <span style="text-transform:none;font-weight:500">(optional)</span></label>
+              <input id="device" name="device" maxlength="120" placeholder="Example: Samsung Galaxy S24">
+            </div>
+
+            <div class="field">
+              <label for="androidVersion">Android version <span style="text-transform:none;font-weight:500">(optional)</span></label>
+              <input id="androidVersion" name="androidVersion" maxlength="80" placeholder="Example: Android 16">
+            </div>
+
+            <div class="field full">
+              <label for="interests">What would you most like to test? <span style="text-transform:none;font-weight:500">(optional)</span></label>
+              <textarea id="interests" name="interests" maxlength="1000" placeholder="Pageant discovery, family profiles, wardrobe, vendors, community, speaking practice, marketplace, general usability, etc."></textarea>
+            </div>
+          </div>
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="checks">
+            <label class="check"><input id="age18" type="checkbox" required> <span>I confirm that I am at least 18 years old and legally able to participate in the private beta.</span></label>
+            <label class="check"><input id="contactConsent" type="checkbox" required> <span>I agree that Pageant Atlas may contact me at the email above about beta access, testing updates and beta-related support.</span></label>
+          </div>
+
+          <button class="submit" id="submitBtn" type="submit">Submit Beta Application</button>
+          <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+          <div class="privacy">Your application is used only to administer the Pageant Atlas beta and related support. We do not sell applicant information. See the <a href="privacy.html">Privacy Policy</a>.</div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="community-standards.html">Community & Child Safety Standards</a>
+        <a href="index.html">Account & Data Deletion</a>
+        <a href="mailto:bigboomcreations@gmail.com">Contact</a>
+      </nav>
+      <div>© 2026 Pageant Atlas • Private Beta</div>
+    </div>
+  </footer>
+
+<script>
+(() => {
+  'use strict';
+  const SUPABASE_URL='https://iomlvngtcsjkyjgggoxf.supabase.co';
+  const PUBLISHABLE_KEY='sb_publishable_XNYTKbeIZ6aWDda-U1voZA_0XZHI50h';
+  const FORM_VERSION='2026-09-09.1';
+
+  const form=document.getElementById('betaForm');
+  const role=document.getElementById('role');
+  const otherWrap=document.getElementById('otherRoleWrap');
+  const roleOther=document.getElementById('roleOther');
+  const status=document.getElementById('formStatus');
+  const submit=document.getElementById('submitBtn');
+
+  role.addEventListener('change',()=>{
+    const other=role.value==='other';
+    otherWrap.hidden=!other;
+    roleOther.required=other;
+    if(!other)roleOther.value='';
+  });
+
+  const show=(message,type)=>{
+    status.className='status '+type;
+    status.textContent=message;
+  };
+
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();
+    status.className='status';
+    if(!form.reportValidity())return;
+
+    submit.disabled=true;
+    submit.textContent='Submitting…';
+
+    const payload={
+      p_full_name:document.getElementById('fullName').value.trim(),
+      p_google_play_email:document.getElementById('email').value.trim(),
+      p_state:document.getElementById('state').value,
+      p_pageant_role:role.value,
+      p_role_other:roleOther.value.trim()||null,
+      p_android_device:document.getElementById('device').value.trim()||null,
+      p_android_version:document.getElementById('androidVersion').value.trim()||null,
+      p_testing_interests:document.getElementById('interests').value.trim()||null,
+      p_age_18_confirmed:document.getElementById('age18').checked,
+      p_contact_consent:document.getElementById('contactConsent').checked,
+      p_website:document.getElementById('website').value,
+      p_form_version:FORM_VERSION
+    };
+
+    try{
+      const response=await fetch(SUPABASE_URL+'/rest/v1/rpc/submit_beta_test_application',{
+        method:'POST',
+        headers:{
+          'apikey':PUBLISHABLE_KEY,
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(payload)
+      });
+
+      let data=null;
+      try{data=await response.json();}catch{}
+
+      if(!response.ok){
+        const message=data?.message||data?.error_description||'We could not submit your application. Please try again.';
+        throw new Error(message);
+      }
+
+      show(data?.message||'Thanks! Your beta application has been received. If approved, we will contact you by email.','ok');
+      form.reset();
+      otherWrap.hidden=true;
+      roleOther.required=false;
+      status.scrollIntoView({behavior:'smooth',block:'center'});
+    }catch(error){
+      show(error?.message||'We could not submit your application. Please try again or email bigboomcreations@gmail.com.','err');
+    }finally{
+      submit.disabled=false;
+      submit.textContent='Submit Beta Application';
+    }
+  });
+})();
+</script>
+</body>
+</html>

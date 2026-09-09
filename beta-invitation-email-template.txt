@@ -37,7 +37,7 @@ YOUR BETA TESTER HUB
 
 You can return to the Pageant Atlas beta page at any time for application information, access links, beta instructions, privacy information, and support:
 
-{{beta_website_url}}
+https://pageant-atlas-beta-kyrebelyell2004-9541.vercel.app
 
 WHAT WE'D LOVE YOU TO TEST
 
@@ -76,12 +76,12 @@ Randy Shockley
 Pageant Atlas
 Big Boom Creations
 bigboomcreations@gmail.com
-{{beta_website_url}}
+https://pageant-atlas-beta-kyrebelyell2004-9541.vercel.app
 
 ---
 TEMPLATE FIELDS
 {{first_name}} = tester's first name
 {{google_play_email}} = approved Google Play email
-{{beta_website_url}} = canonical Vercel beta website URL
+https://pageant-atlas-beta-kyrebelyell2004-9541.vercel.app = canonical Vercel beta website URL
 
 These fields do not autofill in a normal pasted email. They are intentionally written as merge fields so the future Pageant Atlas founder beta inbox/email generator can populate them automatically from the approved application record.

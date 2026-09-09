@@ -1,317 +1,539 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f6dfe6">
-  <title>Join the Pageant Atlas Private Beta</title>
-  <meta name="description" content="Apply to join the Pageant Atlas private Android beta and help shape a pageant discovery, planning, family, wardrobe, vendor and community platform.">
-  <meta name="robots" content="index,follow">
-  <style>
-    :root{
-      --cream:#fffaf5;--paper:#fffdf9;--blush:#f6dfe6;--rose:#a65174;
-      --plum:#4b2d39;--muted:#75636b;--gold:#c8a45b;--gold-soft:#ead7ad;
-      --line:#eadde1;--success:#2f7657;--danger:#a53d4f;
-      --shadow:0 18px 50px rgba(75,45,57,.10)
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;color:var(--plum);
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      line-height:1.58;
-      background:
-        radial-gradient(circle at 8% 3%,rgba(246,223,230,.95),transparent 27rem),
-        radial-gradient(circle at 94% 16%,rgba(234,215,173,.36),transparent 27rem),
-        linear-gradient(180deg,var(--cream),#fff 48%,#fff9f7)
-    }
-    a{color:var(--rose)}
-    button,input,select,textarea{font:inherit}
-    .wrap{width:min(1040px,calc(100% - 28px));margin:auto}
-    header{text-align:center;padding:48px 0 24px}
-    .mark{
-      width:94px;height:94px;border-radius:28px;margin:0 auto 16px;display:grid;
-      place-items:center;position:relative;background:linear-gradient(145deg,#fff 8%,var(--blush) 64%,var(--gold-soft));
-      border:1px solid rgba(166,81,116,.14);box-shadow:var(--shadow)
-    }
-    .crown{font-size:47px;color:var(--gold);transform:translateY(-5px)}
-    .pin{position:absolute;left:50%;bottom:14px;transform:translateX(-50%) rotate(45deg);width:18px;height:18px;border-radius:50% 50% 50% 0;background:var(--rose)}
-    .eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-size:.77rem;font-weight:900}
-    h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
-    h1{font-size:clamp(2.25rem,7vw,4.3rem);line-height:1.02;margin:.45rem 0 .8rem}
-    .lede{max-width:790px;margin:auto;color:var(--muted);font-size:1.08rem}
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:24px 0 0}
-    .btn{
-      border:1px solid var(--line);background:#fff;color:var(--plum);border-radius:999px;
-      padding:11px 16px;text-decoration:none;font-weight:850;cursor:pointer
-    }
-    .btn.primary{background:var(--rose);border-color:var(--rose);color:#fff}
-    .btn.gold{background:#fff8e8;border-color:var(--gold-soft);color:#6a5121}
-    main{padding:8px 0 60px}
-    .layout{display:grid;grid-template-columns:.86fr 1.14fr;gap:18px;align-items:start}
-    .card{background:rgba(255,253,249,.95);border:1px solid var(--line);border-radius:25px;padding:clamp(20px,4vw,34px);box-shadow:var(--shadow)}
-    .card + .card{margin-top:18px}
-    h2{font-size:1.65rem;margin:0 0 11px}
-    h3{font-size:1.08rem;margin:17px 0 7px}
-    p{margin:.55rem 0 .95rem}
-    ul{padding-left:1.25rem}
-    li{margin:.48rem 0}
-    .note{border-left:4px solid var(--gold);background:#fffaf0;border-radius:9px;padding:12px 14px;font-size:.92rem}
-    .approved{border:1px solid var(--gold-soft);border-radius:18px;background:#fff;padding:16px;margin-top:17px}
-    .approved .buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-    .approved a{text-align:center}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-    .field.full{grid-column:1/-1}
-    label{display:block;font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;color:#674b58}
-    input,select,textarea{
-      width:100%;border:1px solid #dccccf;border-radius:13px;background:#fff;padding:12px;color:var(--plum);
-      outline:none;transition:border .15s,box-shadow .15s
-    }
-    input:focus,select:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(166,81,116,.11)}
-    textarea{min-height:105px;resize:vertical}
-    .hint{font-size:.78rem;color:var(--muted);margin-top:5px}
-    .checks{display:grid;gap:10px;margin:17px 0}
-    .check{display:flex;gap:9px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:650;color:var(--plum)}
-    .check input{width:auto;margin-top:4px}
-    .submit{width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,var(--rose),#7e3d5b);color:#fff;padding:13px 16px;font-weight:900;cursor:pointer}
-    .submit:disabled{opacity:.55;cursor:wait}
-    .status{margin-top:12px;padding:11px 13px;border-radius:12px;display:none}
-    .status.ok{display:block;background:#edf8f2;color:var(--success);border:1px solid #cde9da}
-    .status.err{display:block;background:#fff0f2;color:var(--danger);border:1px solid #efcfd5}
-    .privacy{font-size:.8rem;color:var(--muted);margin-top:12px}
-    .honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
-    footer{text-align:center;border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:.84rem}
-    footer nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
-    @media(max-width:780px){.layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
-    @media(max-width:520px){header{padding-top:34px}.approved .buttons{grid-template-columns:1fr}.card{border-radius:20px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbf4ef">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Apply to join the Pageant Atlas private Android beta and help shape a pageant discovery, planning, preparation, family, vendor and community platform.">
+<meta property="og:title" content="Pageant Atlas Private Beta">
+<meta property="og:description" content="Discover pageants. Plan your journey. Practice with confidence. Apply to help shape Pageant Atlas.">
+<meta property="og:type" content="website">
+<title>Pageant Atlas Private Beta</title>
+<style>
+:root{
+  --ivory:#fffaf5;--paper:#fffdf9;--paper2:#fff8f5;--blush:#f8dde3;--blush2:#f2c8d2;
+  --plum:#6f2447;--plum2:#4a2335;--muted:#7d6b73;--gold:#c99a43;--gold2:#e8cf99;
+  --line:#eadbdc;--success:#2f7657;--danger:#9b3d4d;
+  --shadow:0 22px 60px rgba(74,35,53,.11);
+  --shadow-sm:0 10px 28px rgba(74,35,53,.08);
+  --radius:26px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ivory)}
+body{
+  margin:0;color:var(--plum2);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.58;background:
+   radial-gradient(circle at 3% 1%,rgba(248,221,227,.88),transparent 29rem),
+   radial-gradient(circle at 96% 11%,rgba(232,207,153,.24),transparent 27rem),
+   linear-gradient(180deg,#fffaf6 0%,#fff 42%,#fffaf7 100%);
+  overflow-x:hidden
+}
+body:before,body:after{content:"";position:fixed;pointer-events:none;z-index:-1;border:1px solid rgba(201,154,67,.25);border-radius:50%}
+body:before{width:580px;height:580px;left:-420px;top:22vh}
+body:after{width:760px;height:760px;right:-570px;top:49vh}
+a{color:var(--plum);text-decoration-thickness:1px;text-underline-offset:3px}
+button,input,select,textarea{font:inherit}
+img{max-width:100%;display:block}
+.wrap{width:min(1160px,calc(100% - 32px));margin-inline:auto}
+.serif{font-family:Georgia,"Times New Roman",serif}
+.eyebrow{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:900;color:#9c7330}
+.gold-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
+.nav-shell{
+  position:sticky;top:0;z-index:40;background:rgba(255,250,245,.84);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(234,219,220,.76)
+}
+.nav{min-height:72px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--plum2);min-width:max-content}
+.brand img{width:44px;height:44px;border-radius:13px;object-fit:cover;box-shadow:0 5px 14px rgba(74,35,53,.1)}
+.brand-name{font-family:Georgia,"Times New Roman",serif;font-size:1.28rem;color:var(--plum);letter-spacing:.01em}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:19px}
+.nav-links a{font-size:.88rem;font-weight:760;text-decoration:none;color:#6e5660}
+.nav-links a:hover{color:var(--plum)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 18px;
+  border:1px solid var(--line);font-weight:850;text-decoration:none;cursor:pointer;transition:.18s ease;
+  background:#fff;color:var(--plum2);box-shadow:0 3px 10px rgba(74,35,53,.03)
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.btn.primary{background:linear-gradient(135deg,#8a3159,var(--plum));border-color:var(--plum);color:#fff}
+.btn.gold{background:linear-gradient(135deg,#fff9e9,#fff4d8);border-color:var(--gold2);color:#6b4b19}
+.btn.ghost{background:rgba(255,255,255,.64)}
+.hero{position:relative;padding:72px 0 54px}
+.hero:before{
+ content:"";position:absolute;left:0;right:0;top:0;height:100%;
+ background:
+  linear-gradient(126deg,rgba(248,221,227,.58),transparent 35%),
+  radial-gradient(circle at 82% 28%,rgba(232,207,153,.24),transparent 22rem);
+ pointer-events:none
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.03fr .97fr;gap:54px;align-items:center}
+.hero-copy h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(3rem,6vw,5.45rem);line-height:.94;margin:13px 0 22px;color:var(--plum);letter-spacing:-.035em}
+.hero-copy h1 span{display:block;color:var(--plum2);font-size:.46em;line-height:1.2;margin-top:16px;letter-spacing:.01em;font-style:italic}
+.hero-copy p{font-size:1.1rem;color:var(--muted);max-width:670px;margin:0}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:27px}
+.hero-proof{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.proof-pill{border:1px solid rgba(201,154,67,.28);background:rgba(255,253,249,.82);border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:800;color:#786557}
+.hero-art{position:relative;min-height:520px;display:grid;place-items:center}
+.map-plate{
+ position:absolute;inset:18px;border-radius:42px;background:
+  radial-gradient(circle at 72% 25%,rgba(255,255,255,.96) 0 3px,transparent 4px),
+  radial-gradient(circle at 22% 80%,rgba(255,255,255,.86) 0 4px,transparent 5px),
+  linear-gradient(145deg,#f9dbe2,#fff8f2 58%,#f2ddae);
+ border:1px solid rgba(201,154,67,.25);box-shadow:var(--shadow);overflow:hidden
+}
+.map-plate:before{
+ content:"";position:absolute;inset:0;opacity:.5;
+ background:
+  radial-gradient(ellipse at 75% 30%,transparent 0 15%,rgba(111,36,71,.08) 15.3% 15.8%,transparent 16%),
+  repeating-radial-gradient(circle at 70% 32%,transparent 0 26px,rgba(201,154,67,.14) 27px 28px,transparent 29px 54px)
+}
+.map-plate:after{
+ content:"";position:absolute;width:360px;height:180px;border:2px dashed rgba(201,154,67,.4);border-color:rgba(201,154,67,.42) transparent transparent rgba(201,154,67,.42);
+ border-radius:50%;right:-70px;top:92px;transform:rotate(-9deg)
+}
+.hero-logo{
+ position:relative;z-index:2;width:min(390px,75%);aspect-ratio:1;border-radius:34px;object-fit:cover;
+ box-shadow:0 28px 55px rgba(74,35,53,.17);border:1px solid rgba(255,255,255,.8)
+}
+.float-note{
+ position:absolute;z-index:3;right:3px;bottom:43px;width:min(270px,65%);padding:16px 18px;border-radius:18px;
+ background:rgba(255,253,249,.92);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:var(--shadow-sm)
+}
+.float-note strong{display:block;color:var(--plum);font-family:Georgia,"Times New Roman",serif;font-size:1.12rem}
+.float-note span{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
+.section{padding:70px 0}
+.section.soft{background:linear-gradient(180deg,rgba(248,221,227,.24),rgba(255,255,255,.42))}
+.section-head{max-width:760px;margin:0 auto 34px;text-align:center}
+.section-head h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.15rem,4vw,3.3rem);font-weight:500;line-height:1.02;color:var(--plum);margin:9px 0 14px}
+.section-head p{margin:0;color:var(--muted);font-size:1.02rem}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.feature{
+ padding:24px;border-radius:22px;background:rgba(255,253,249,.9);border:1px solid var(--line);box-shadow:var(--shadow-sm)
+}
+.feature-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#fff6df,#f3dca9);color:#7a571d;font-size:1rem;font-weight:950;margin-bottom:15px}
+.feature h3{font-family:Georgia,"Times New Roman",serif;font-size:1.28rem;margin:0 0 7px;color:var(--plum)}
+.feature p{margin:0;color:var(--muted);font-size:.91rem}
+.beta-band{
+ display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:38px;border-radius:32px;
+ background:
+  radial-gradient(circle at 6% 12%,rgba(248,221,227,.9),transparent 20rem),
+  linear-gradient(135deg,#fffaf7,#fffdf9 55%,#fff6e8);
+ border:1px solid rgba(201,154,67,.25);box-shadow:var(--shadow)
+}
+.beta-band h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.1rem,4vw,3.15rem);line-height:1.04;font-weight:500;color:var(--plum);margin:8px 0 14px}
+.beta-band p{color:var(--muted)}
+.role-cloud{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.role-cloud span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:.83rem;font-weight:800;color:#6a4f5b}
+.eligibility{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.82rem;color:#7a6970}
+.test-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.test-card{padding:18px 16px;border:1px solid var(--line);border-radius:19px;background:#fff;text-align:center}
+.test-card b{display:block;color:var(--plum);font-family:Georgia,"Times New Roman",serif;font-size:1.03rem}
+.test-card span{display:block;color:var(--muted);font-size:.78rem;margin-top:5px;line-height:1.4}
+.form-shell{display:grid;grid-template-columns:.72fr 1.28fr;gap:22px;align-items:start}
+.form-aside{
+ position:sticky;top:98px;padding:30px;border-radius:27px;background:linear-gradient(145deg,#7f2c52,#4d2337);
+ color:#fff;box-shadow:var(--shadow)
+}
+.form-aside .eyebrow{color:#efd7a9}
+.form-aside h2{font-family:Georgia,"Times New Roman",serif;font-size:2.2rem;line-height:1.06;font-weight:500;margin:10px 0 15px}
+.form-aside p{color:rgba(255,255,255,.8)}
+.steps{display:grid;gap:13px;margin-top:25px}
+.step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.step-num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff6df;color:#76531d;font-weight:950;font-size:.8rem}
+.step b{display:block;font-size:.91rem}
+.step span{display:block;font-size:.78rem;color:rgba(255,255,255,.68);margin-top:2px}
+.form-card{padding:30px;border-radius:27px;background:rgba(255,253,249,.96);border:1px solid var(--line);box-shadow:var(--shadow)}
+.form-card h2{font-family:Georgia,"Times New Roman",serif;font-size:2rem;color:var(--plum);font-weight:500;margin:0 0 4px}
+.form-card .intro{color:var(--muted);margin:0 0 21px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field.full{grid-column:1/-1}
+label{display:block;font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.055em;color:#6d4c5a;margin-bottom:6px}
+input,select,textarea{
+ width:100%;border:1px solid #dcc9ce;border-radius:13px;background:#fff;padding:12px 13px;color:var(--plum2);
+ outline:none;transition:border .15s,box-shadow .15s
+}
+input:focus,select:focus,textarea:focus{border-color:#9b4e70;box-shadow:0 0 0 3px rgba(155,78,112,.1)}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:.78rem;color:var(--muted);margin-top:5px}
+.checks{display:grid;gap:10px;margin:17px 0}
+.check{display:flex;gap:9px;align-items:flex-start;text-transform:none;letter-spacing:0;font-size:.88rem;font-weight:650;color:var(--plum2)}
+.check input{width:auto;margin-top:4px}
+.check small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
+.submit{width:100%;border:0;border-radius:14px;background:linear-gradient(135deg,#8c325b,#692342);color:#fff;padding:13px 16px;font-weight:900;cursor:pointer}
+.submit:disabled{opacity:.58;cursor:wait}
+.status{margin-top:13px;padding:13px 14px;border-radius:13px;display:none}
+.status.ok{display:block;background:#edf8f2;color:var(--success);border:1px solid #cde9da}
+.status.err{display:block;background:#fff0f2;color:var(--danger);border:1px solid #efcfd5}
+.privacy-note{font-size:.79rem;color:var(--muted);margin-top:13px}
+.honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.approved{
+ padding:38px;border-radius:30px;background:
+  linear-gradient(135deg,rgba(255,248,233,.96),rgba(255,253,249,.96));
+ border:1px solid var(--gold2);box-shadow:var(--shadow);text-align:center
+}
+.approved h2{font-family:Georgia,"Times New Roman",serif;font-size:2.45rem;font-weight:500;color:var(--plum);margin:4px 0 10px}
+.approved p{max-width:720px;margin:0 auto;color:var(--muted)}
+.approved-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.timeline-item{position:relative;text-align:center;padding:17px 10px}
+.timeline-item:after{content:"";position:absolute;right:-9px;top:29px;width:18px;height:1px;background:var(--gold2)}
+.timeline-item:last-child:after{display:none}
+.timeline-dot{width:38px;height:38px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:#fff6df;border:1px solid var(--gold2);color:#73521e;font-weight:950}
+.timeline-item b{display:block;color:var(--plum);font-size:.88rem}
+.timeline-item span{display:block;color:var(--muted);font-size:.75rem;line-height:1.35;margin-top:4px}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.trust-card{padding:30px;border:1px solid var(--line);border-radius:26px;background:#fff;box-shadow:var(--shadow-sm)}
+.trust-card h2{font-family:Georgia,"Times New Roman",serif;font-size:2.1rem;font-weight:500;color:var(--plum);margin:6px 0 11px}
+.trust-card p{color:var(--muted)}
+.trust-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.quote-card{padding:34px;border-radius:26px;background:linear-gradient(145deg,#f8dde3,#fff8f1);border:1px solid var(--line)}
+.quote-card blockquote{font-family:Georgia,"Times New Roman",serif;color:var(--plum);font-size:1.55rem;line-height:1.3;margin:0}
+.quote-card p{color:var(--muted);margin:14px 0 0}
+.faq{max-width:900px;margin:auto;display:grid;gap:10px}
+details{border:1px solid var(--line);border-radius:17px;background:#fff;padding:0 18px;box-shadow:0 4px 15px rgba(74,35,53,.035)}
+summary{cursor:pointer;list-style:none;font-weight:850;color:var(--plum2);padding:16px 24px 16px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:0;top:13px;font-size:1.25rem;color:var(--gold)}
+details[open] summary:after{content:"–"}
+details p{color:var(--muted);margin:0 0 16px;font-size:.92rem}
+footer{border-top:1px solid var(--line);background:#fffaf7;padding:34px 0 42px}
+.footer{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+.footer-brand{display:flex;gap:12px;align-items:center}
+.footer-brand img{width:46px;height:46px;border-radius:13px;object-fit:cover}
+.footer-title{font-family:Georgia,"Times New Roman",serif;color:var(--plum);font-size:1.35rem}
+.footer-tag{color:var(--muted);font-size:.8rem;margin-top:2px}
+.footer-links{display:flex;gap:13px;flex-wrap:wrap;justify-content:flex-end;font-size:.82rem}
+.footer-links a{color:#715963}
+.copyright{margin-top:17px;padding-top:17px;border-top:1px solid var(--line);font-size:.75rem;color:#8c7b82}
+@media(max-width:980px){
+ .nav-links a:not(.nav-cta){display:none}
+ .hero-grid,.beta-band,.form-shell,.trust-grid{grid-template-columns:1fr}
+ .hero{padding-top:48px}
+ .hero-art{min-height:430px}
+ .form-aside{position:relative;top:auto}
+ .test-grid{grid-template-columns:repeat(3,1fr)}
+ .timeline{grid-template-columns:repeat(3,1fr)}
+ .timeline-item:nth-child(3):after,.timeline-item:last-child:after{display:none}
+}
+@media(max-width:680px){
+ .wrap{width:min(100% - 22px,1160px)}
+ .nav{min-height:64px}
+ .brand-name{font-size:1.05rem}
+ .nav-links{gap:8px}
+ .nav-links .btn{padding:9px 12px;font-size:.8rem}
+ .hero{padding:34px 0 36px}
+ .hero-copy h1{font-size:clamp(2.65rem,14vw,4rem)}
+ .hero-art{min-height:350px;margin-top:5px}
+ .map-plate{inset:6px;border-radius:30px}
+ .hero-logo{width:72%;border-radius:28px}
+ .float-note{right:0;bottom:20px;width:72%;padding:13px 14px}
+ .section{padding:52px 0}
+ .feature-grid,.test-grid{grid-template-columns:1fr 1fr}
+ .beta-band,.approved,.form-card,.form-aside,.trust-card,.quote-card{padding:23px;border-radius:23px}
+ .form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .timeline{grid-template-columns:1fr 1fr}
+ .timeline-item:after{display:none}
+ .footer{grid-template-columns:1fr}
+ .footer-links{justify-content:flex-start}
+}
+@media(max-width:430px){
+ .feature-grid,.test-grid{grid-template-columns:1fr}
+ .hero-actions,.approved-actions{display:grid}
+ .hero-actions .btn,.approved-actions .btn{width:100%}
+ .hero-art{min-height:315px}
+ .float-note{font-size:.78rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="mark" aria-hidden="true"><div class="crown">♕</div><div class="pin"></div></div>
-    <div class="eyebrow">Pageant Atlas • Private Beta</div>
-    <h1>Help Shape Pageant Atlas</h1>
-    <p class="lede">Pageant Atlas is being built to make pageant discovery, planning, family organization, preparation, wardrobe, vendors, marketplace tools and community easier to manage in one place. We’re inviting a limited group of adult Android testers to help us make it better.</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="#apply">Apply to Beta Test</a>
-      <a class="btn" href="#approved">Already approved?</a>
+<div class="nav-shell">
+  <nav class="nav wrap" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="Pageant Atlas Private Beta home">
+      <img src="data:image/webp;base64,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" alt="Pageant Atlas crown and compass logo">
+      <span class="brand-name">Pageant Atlas</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#testing">What to Test</a><a href="#faq">FAQ</a><a href="#approved">Already Approved?</a>
+      <a class="btn primary nav-cta" href="#apply">Apply</a>
     </div>
-  </header>
+  </nav>
+</div>
 
-  <main class="wrap">
-    <div class="layout">
-      <div>
-        <section class="card">
-          <h2>Who we're looking for</h2>
-          <p>You do not have to be a pageant expert or a technical tester. We want real-world feedback from people throughout the pageant community.</p>
-          <ul>
-            <li>Contestants and titleholders</li>
-            <li>Parents and guardians</li>
-            <li>Pageant directors and staff</li>
-            <li>Coaches, judges and vendors</li>
-            <li>Pageant supporters and enthusiasts</li>
-          </ul>
-
-          <h3>What beta testers do</h3>
-          <ul>
-            <li>Use Pageant Atlas naturally on an Android device.</li>
-            <li>Report bugs, missing or incorrect pageant information, and confusing experiences.</li>
-            <li>Suggest features and improvements.</li>
-            <li>Help us verify that family, privacy and safety features behave correctly.</li>
-          </ul>
-
-          <div class="note"><strong>Private beta:</strong> Applicants must be 18 or older. Approved testers will be asked to accept the Pageant Atlas NDA and Private Beta Tester Participation Agreement inside the app before testing.</div>
-
-          <div class="approved" id="approved">
-            <strong>Already approved for the beta?</strong>
-            <p class="hint">Use the same Google account email that was approved for the closed test.</p>
-            <div class="buttons">
-              <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.pageantatlas.app" rel="noopener">Join on Android</a>
-              <a class="btn gold" href="https://play.google.com/apps/testing/com.pageantatlas.app" rel="noopener">Join on the Web</a>
-            </div>
-          </div>
-        </section>
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Pageant Atlas • Private Android Beta</div>
+      <h1>Help shape what comes next.<span>Discover pageants. Plan your journey. Practice with confidence.</span></h1>
+      <p>Pageant Atlas is being built to bring pageant discovery, planning, preparation, family organization, wardrobe, vendors, marketplace tools and community together in one polished place.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#apply">Apply to Join the Private Beta</a>
+        <a class="btn ghost" href="#approved">Already Approved? Get the App</a>
       </div>
-
-      <section class="card" id="apply">
-        <div class="eyebrow">Beta Application</div>
-        <h2>Apply to Join</h2>
-        <p class="hint">Use the Google account email that you use with Google Play. If approved, that is the address we will add to the closed-test access list.</p>
-
-        <form id="betaForm" novalidate>
-          <div class="form-grid">
-            <div class="field full">
-              <label for="fullName">Full name</label>
-              <input id="fullName" name="fullName" autocomplete="name" maxlength="120" required>
-            </div>
-
-            <div class="field full">
-              <label for="email">Google Play account email</label>
-              <input id="email" name="email" type="email" autocomplete="email" maxlength="320" required>
-              <div class="hint">This should be the Google account you will use to install Pageant Atlas.</div>
-            </div>
-
-            <div class="field">
-              <label for="state">State</label>
-              <select id="state" name="state" required>
-                <option value="">Select state</option>
-                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option>
-                <option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option>
-                <option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option>
-                <option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
-                <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option>
-                <option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
-                <option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option>
-                <option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
-                <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option>
-                <option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
-                <option>District of Columbia</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="role">Pageant involvement</label>
-              <select id="role" name="role" required>
-                <option value="">Select one</option>
-                <option value="contestant">Contestant / Titleholder</option>
-                <option value="parent_guardian">Parent / Guardian</option>
-                <option value="director">Director / Pageant Staff</option>
-                <option value="coach">Coach</option>
-                <option value="vendor">Vendor</option>
-                <option value="judge">Judge</option>
-                <option value="pageant_enthusiast">Pageant Enthusiast / Supporter</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div class="field full" id="otherRoleWrap" hidden>
-              <label for="roleOther">Tell us your involvement</label>
-              <input id="roleOther" name="roleOther" maxlength="120">
-            </div>
-
-            <div class="field">
-              <label for="device">Android device <span style="text-transform:none;font-weight:500">(optional)</span></label>
-              <input id="device" name="device" maxlength="120" placeholder="Example: Samsung Galaxy S24">
-            </div>
-
-            <div class="field">
-              <label for="androidVersion">Android version <span style="text-transform:none;font-weight:500">(optional)</span></label>
-              <input id="androidVersion" name="androidVersion" maxlength="80" placeholder="Example: Android 16">
-            </div>
-
-            <div class="field full">
-              <label for="interests">What would you most like to test? <span style="text-transform:none;font-weight:500">(optional)</span></label>
-              <textarea id="interests" name="interests" maxlength="1000" placeholder="Pageant discovery, family profiles, wardrobe, vendors, community, speaking practice, marketplace, general usability, etc."></textarea>
-            </div>
-          </div>
-
-          <div class="honeypot" aria-hidden="true">
-            <label for="website">Website</label>
-            <input id="website" name="website" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="checks">
-            <label class="check"><input id="age18" type="checkbox" required> <span>I confirm that I am at least 18 years old and legally able to participate in the private beta.</span></label>
-            <label class="check"><input id="contactConsent" type="checkbox" required> <span>I agree that Pageant Atlas may contact me at the email above about beta access, testing updates and beta-related support.</span></label>
-          </div>
-
-          <button class="submit" id="submitBtn" type="submit">Submit Beta Application</button>
-          <div class="status" id="formStatus" role="status" aria-live="polite"></div>
-          <div class="privacy">Your application is used only to administer the Pageant Atlas beta and related support. We do not sell applicant information. See the <a href="privacy.html">Privacy Policy</a>.</div>
-        </form>
-      </section>
+      <div class="hero-proof" aria-label="Beta details">
+        <span class="proof-pill">Free to apply</span>
+        <span class="proof-pill">Limited closed beta</span>
+        <span class="proof-pill">Distributed through Google Play</span>
+      </div>
     </div>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <nav>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="community-standards.html">Community & Child Safety Standards</a>
-        <a href="index.html">Account & Data Deletion</a>
-        <a href="mailto:bigboomcreations@gmail.com">Contact</a>
-      </nav>
-      <div>© 2026 Pageant Atlas • Private Beta</div>
+    <div class="hero-art" aria-label="Pageant Atlas brand artwork">
+      <div class="map-plate"></div>
+      <img class="hero-logo" src="data:image/webp;base64,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" alt="Official Pageant Atlas logo">
+      <div class="float-note"><strong>Built for the pageant journey.</strong><span>One place to discover, prepare, organize and grow.</span></div>
     </div>
-  </footer>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">More than a directory</div>
+      <h2>Your pageant journey, all in one place.</h2>
+      <p>Pageant Atlas is designed as a complete companion for contestants, families, directors, coaches, judges, vendors and the wider pageant community.</p>
+    </div>
+    <div class="feature-grid">
+      <article class="feature"><div class="feature-mark">01</div><h3>Discover</h3><p>Find pageants by location, date, division, system and other verified details as coverage grows.</p></article>
+      <article class="feature"><div class="feature-mark">02</div><h3>My Journey</h3><p>Track events, preparation, notes, schedules, goals, milestones and the story of your pageant experience.</p></article>
+      <article class="feature"><div class="feature-mark">03</div><h3>Practice</h3><p>Build confidence with interview, speaking and preparation tools designed around real pageant needs.</p></article>
+      <article class="feature"><div class="feature-mark">04</div><h3>Wardrobe & Marketplace</h3><p>Organize wardrobe, keep important item details together and explore pageant-focused marketplace resources.</p></article>
+      <article class="feature"><div class="feature-mark">05</div><h3>Vendors</h3><p>Find, save, review and share pageant-related vendors and services as the directory expands.</p></article>
+      <article class="feature"><div class="feature-mark">06</div><h3>Community</h3><p>Connect around the pageant world in a purpose-built space with safety, reporting and moderation in mind.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="wrap">
+    <div class="beta-band">
+      <div>
+        <div class="eyebrow">Private Beta Invitation</div>
+        <h2>Help build Pageant Atlas with us.</h2>
+        <p>You do not need to be a technical tester. We want real-world feedback from people who will actually use Pageant Atlas and can tell us what works, what is confusing, what is missing and what would make the experience better.</p>
+        <div class="role-cloud" aria-label="Tester perspectives">
+          <span>Contestants & titleholders</span><span>Parents & guardians</span><span>Directors & staff</span>
+          <span>Coaches</span><span>Judges</span><span>Vendors</span><span>Pageant supporters</span>
+        </div>
+        <div class="eligibility">Current private beta participation is limited to eligible adult testers. Family and parent-managed experiences remain part of what we are testing inside Pageant Atlas.</div>
+      </div>
+      <div class="quote-card">
+        <blockquote>“Use it naturally. If something feels awkward, confusing, incomplete—or unexpectedly delightful—we want to hear about it.”</blockquote>
+        <p>That real-world perspective is exactly what makes beta testing valuable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="testing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What your feedback improves</div>
+      <h2>Real use finds what checklists cannot.</h2>
+      <p>We are especially interested in the areas below, but any useful feedback is welcome.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card"><b>Discovery</b><span>Missing events, incorrect data, search quality and location accuracy.</span></div>
+      <div class="test-card"><b>Profiles & Family</b><span>Saving information, photos, account switching and family tools.</span></div>
+      <div class="test-card"><b>Planning</b><span>Journey tracking, calendars, notes, wardrobe and preparation.</span></div>
+      <div class="test-card"><b>Community</b><span>Navigation, safety, vendors, marketplace and interaction tools.</span></div>
+      <div class="test-card"><b>Overall Experience</b><span>Performance, crashes, display issues, confusing screens and feature ideas.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="apply">
+  <div class="wrap form-shell">
+    <aside class="form-aside">
+      <div class="eyebrow">How it works</div>
+      <h2>A few minutes now can help shape the whole app.</h2>
+      <p>Apply with the Google account you use for Google Play. If approved, that account is what we use to grant access to the closed test.</p>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><b>Apply</b><span>Tell us a little about your perspective.</span></div></div>
+        <div class="step"><div class="step-num">2</div><div><b>Get approved</b><span>We review applications and add selected Google accounts.</span></div></div>
+        <div class="step"><div class="step-num">3</div><div><b>Join & install</b><span>Use the Google Play closed-test links we send you.</span></div></div>
+        <div class="step"><div class="step-num">4</div><div><b>Review the beta agreement</b><span>Pageant Atlas handles the NDA and participation agreement in-app.</span></div></div>
+        <div class="step"><div class="step-num">5</div><div><b>Test & share feedback</b><span>Use the app naturally and tell us what you find.</span></div></div>
+      </div>
+    </aside>
+
+    <section class="form-card">
+      <h2>Apply to Join</h2>
+      <p class="intro">Use the Google account email that you will use to install Pageant Atlas from Google Play.</p>
+      <form id="betaForm" novalidate>
+        <div class="form-grid">
+          <div class="field full"><label for="fullName">Full name</label><input id="fullName" name="fullName" autocomplete="name" maxlength="120" required></div>
+          <div class="field full"><label for="email">Google Play account email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="320" required><div class="hint">This should be the Google account you will use to install Pageant Atlas.</div></div>
+          <div class="field"><label for="state">State</label><select id="state" name="state" required>
+            <option value="">Select state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option>
+          </select></div>
+          <div class="field"><label for="role">Pageant involvement</label><select id="role" name="role" required>
+            <option value="">Select one</option><option value="contestant">Contestant / Titleholder</option><option value="parent_guardian">Parent / Guardian</option><option value="director">Director / Pageant Staff</option><option value="coach">Coach</option><option value="vendor">Vendor</option><option value="judge">Judge</option><option value="pageant_enthusiast">Pageant Supporter / Enthusiast</option><option value="other">Other</option>
+          </select></div>
+          <div class="field full" id="otherRoleWrap" hidden><label for="roleOther">Tell us your involvement</label><input id="roleOther" name="roleOther" maxlength="120"></div>
+          <div class="field"><label for="device">Android device <span style="text-transform:none;font-weight:500">(optional)</span></label><input id="device" name="device" maxlength="120" placeholder="Example: Samsung Galaxy S24"></div>
+          <div class="field"><label for="androidVersion">Android version <span style="text-transform:none;font-weight:500">(optional)</span></label><input id="androidVersion" name="androidVersion" maxlength="80" placeholder="Example: Android 16"></div>
+          <div class="field full"><label for="interests">What would you most like to test? <span style="text-transform:none;font-weight:500">(optional)</span></label><textarea id="interests" name="interests" maxlength="1000" placeholder="Pageant discovery, family profiles, wardrobe, vendors, community, speaking practice, marketplace, general usability, etc."></textarea></div>
+        </div>
+        <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="checks">
+          <label class="check"><input id="age18" type="checkbox" required><span>I confirm that I meet the current eligibility requirements for private beta participation.<small>The current private beta application process is limited to testers age 18 or older.</small></span></label>
+          <label class="check"><input id="contactConsent" type="checkbox" required><span>I agree that Pageant Atlas may contact me about beta access, testing updates and beta-related support.</span></label>
+        </div>
+        <button class="submit" id="submitBtn" type="submit">Submit My Beta Application</button>
+        <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+        <div class="privacy-note">Your application is used to administer the Pageant Atlas beta and related support. We do not sell beta applicant information. See our <a href="privacy.html">Privacy Policy</a>.</div>
+      </form>
+    </section>
+  </div>
+</section>
+
+<section class="section" id="approved">
+  <div class="wrap approved">
+    <div class="eyebrow">Already approved?</div>
+    <h2>Welcome to the private beta.</h2>
+    <p>Use the same Google account email that Pageant Atlas approved for testing. First join the closed test, then install or update the app from Google Play.</p>
+    <div class="approved-actions">
+      <a class="btn primary" href="https://play.google.com/apps/testing/com.pageantatlas.app" rel="noopener">Join the Beta on the Web</a>
+      <a class="btn gold" href="https://play.google.com/store/apps/details?id=com.pageantatlas.app" rel="noopener">Install Pageant Atlas on Android</a>
+    </div>
+    <div class="hint" style="margin-top:14px">Make sure Google Play is signed in with the same Google account that was approved for testing.</div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">The beta path</div><h2>From application to real-world testing.</h2></div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot">1</div><b>Apply</b><span>Submit your beta application.</span></div>
+      <div class="timeline-item"><div class="timeline-dot">2</div><b>Get Approved</b><span>Selected Google accounts receive closed-test access.</span></div>
+      <div class="timeline-item"><div class="timeline-dot">3</div><b>Join</b><span>Opt in through Google Play.</span></div>
+      <div class="timeline-item"><div class="timeline-dot">4</div><b>Install</b><span>Download the current Pageant Atlas beta.</span></div>
+      <div class="timeline-item"><div class="timeline-dot">5</div><b>Agree</b><span>Review the NDA and beta participation agreement in-app.</span></div>
+      <div class="timeline-item"><div class="timeline-dot">6</div><b>Test</b><span>Use Pageant Atlas and send meaningful feedback.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap trust-grid">
+    <div class="trust-card">
+      <div class="eyebrow">Privacy & trust</div>
+      <h2>Your information deserves careful handling.</h2>
+      <p>Beta applications are used to review applicants, manage closed-test access, provide beta-related support and improve the product. Pageant Atlas is being built with privacy, account security, family safeguards, moderation and reporting as core requirements.</p>
+      <div class="trust-links">
+        <a class="btn ghost" href="privacy.html">Privacy Policy</a>
+        <a class="btn ghost" href="community-standards.html">Community & Child Safety Standards</a>
+        <a class="btn ghost" href="index.html">Account & Data Information</a>
+      </div>
+    </div>
+    <div class="quote-card">
+      <div class="eyebrow">Accuracy matters</div>
+      <blockquote>Pageant Atlas should help people make better decisions—not make them guess.</blockquote>
+      <p>Missing or incorrect pageant information is valuable beta feedback. When official information cannot be verified, the product should say so rather than inventing details.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="faq">
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Frequently asked questions</div><h2>Before you apply.</h2></div>
+    <div class="faq">
+      <details><summary>Does it cost anything to beta test Pageant Atlas?</summary><p>No. Participation in the Pageant Atlas private beta is free.</p></details>
+      <details><summary>Do I need pageant experience?</summary><p>No. Pageant-community experience is especially useful, but we also need feedback about general usability, navigation, accessibility and reliability.</p></details>
+      <details><summary>What devices are supported?</summary><p>The current closed beta is focused on Android devices distributed through Google Play.</p></details>
+      <details><summary>Can my child use Pageant Atlas?</summary><p>Pageant Atlas includes family and age-related safeguards. The current private beta application process is limited to eligible adult testers, while parent-managed and family experiences are part of the product being tested.</p></details>
+      <details><summary>What if I find incorrect pageant information?</summary><p>Please report it. Accurate pageant information is one of the most important goals of Pageant Atlas, and testers help us identify missing or incorrect records.</p></details>
+      <details><summary>Where do I report problems?</summary><p>Use the Beta Feedback tools inside Pageant Atlas whenever possible. If the app itself prevents you from reporting a problem, contact <a href="mailto:bigboomcreations@gmail.com">bigboomcreations@gmail.com</a>.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer">
+      <div class="footer-brand">
+        <img src="data:image/webp;base64,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" alt="">
+        <div><div class="footer-title">Pageant Atlas</div><div class="footer-tag">Discover pageants. Plan your journey. Practice with confidence.</div></div>
+      </div>
+      <div class="footer-links">
+        <a href="#apply">Private Beta</a><a href="privacy.html">Privacy Policy</a><a href="community-standards.html">Community Standards</a><a href="index.html">Account & Data</a><a href="mailto:bigboomcreations@gmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Pageant Atlas • Big Boom Creations • bigboomcreations@gmail.com</div>
+  </div>
+</footer>
 
 <script>
-(() => {
-  'use strict';
-  const SUPABASE_URL='https://iomlvngtcsjkyjgggoxf.supabase.co';
-  const PUBLISHABLE_KEY='sb_publishable_XNYTKbeIZ6aWDda-U1voZA_0XZHI50h';
-  const FORM_VERSION='2026-09-09.1';
+(function(){
+  "use strict";
+  var SUPABASE_URL="https://iomlvngtcsjkyjgggoxf.supabase.co";
+  var PUBLISHABLE_KEY="sb_publishable_XNYTKbeIZ6aWDda-U1voZA_0XZHI50h";
+  var FORM_VERSION="2026-09-09.2";
+  var form=document.getElementById("betaForm");
+  var role=document.getElementById("role");
+  var otherWrap=document.getElementById("otherRoleWrap");
+  var roleOther=document.getElementById("roleOther");
+  var status=document.getElementById("formStatus");
+  var submit=document.getElementById("submitBtn");
 
-  const form=document.getElementById('betaForm');
-  const role=document.getElementById('role');
-  const otherWrap=document.getElementById('otherRoleWrap');
-  const roleOther=document.getElementById('roleOther');
-  const status=document.getElementById('formStatus');
-  const submit=document.getElementById('submitBtn');
-
-  role.addEventListener('change',()=>{
-    const other=role.value==='other';
+  role.addEventListener("change",function(){
+    var other=role.value==="other";
     otherWrap.hidden=!other;
     roleOther.required=other;
-    if(!other)roleOther.value='';
+    if(!other) roleOther.value="";
   });
 
-  const show=(message,type)=>{
-    status.className='status '+type;
+  function show(message,type){
+    status.className="status "+type;
     status.textContent=message;
-  };
+  }
 
-  form.addEventListener('submit',async event=>{
+  form.addEventListener("submit",async function(event){
     event.preventDefault();
-    status.className='status';
-    if(!form.reportValidity())return;
-
+    status.className="status";
+    if(!form.reportValidity()) return;
     submit.disabled=true;
-    submit.textContent='Submitting…';
+    submit.textContent="Submitting…";
 
-    const payload={
-      p_full_name:document.getElementById('fullName').value.trim(),
-      p_google_play_email:document.getElementById('email').value.trim(),
-      p_state:document.getElementById('state').value,
+    var payload={
+      p_full_name:document.getElementById("fullName").value.trim(),
+      p_google_play_email:document.getElementById("email").value.trim(),
+      p_state:document.getElementById("state").value,
       p_pageant_role:role.value,
       p_role_other:roleOther.value.trim()||null,
-      p_android_device:document.getElementById('device').value.trim()||null,
-      p_android_version:document.getElementById('androidVersion').value.trim()||null,
-      p_testing_interests:document.getElementById('interests').value.trim()||null,
-      p_age_18_confirmed:document.getElementById('age18').checked,
-      p_contact_consent:document.getElementById('contactConsent').checked,
-      p_website:document.getElementById('website').value,
+      p_android_device:document.getElementById("device").value.trim()||null,
+      p_android_version:document.getElementById("androidVersion").value.trim()||null,
+      p_testing_interests:document.getElementById("interests").value.trim()||null,
+      p_age_18_confirmed:document.getElementById("age18").checked,
+      p_contact_consent:document.getElementById("contactConsent").checked,
+      p_website:document.getElementById("website").value,
       p_form_version:FORM_VERSION
     };
 
     try{
-      const response=await fetch(SUPABASE_URL+'/rest/v1/rpc/submit_beta_test_application',{
-        method:'POST',
-        headers:{
-          'apikey':PUBLISHABLE_KEY,
-          'Content-Type':'application/json'
-        },
+      var response=await fetch(SUPABASE_URL+"/rest/v1/rpc/submit_beta_test_application",{
+        method:"POST",
+        headers:{"apikey":PUBLISHABLE_KEY,"Content-Type":"application/json"},
         body:JSON.stringify(payload)
       });
-
-      let data=null;
-      try{data=await response.json();}catch{}
-
+      var data=null;
+      try{data=await response.json();}catch(e){}
       if(!response.ok){
-        const message=data?.message||data?.error_description||'We could not submit your application. Please try again.';
-        throw new Error(message);
+        throw new Error((data&&data.message)||(data&&data.error_description)||"We could not submit your application. Please try again.");
       }
-
-      show(data?.message||'Thanks! Your beta application has been received. If approved, we will contact you by email.','ok');
+      show((data&&data.message)||"Thanks! Your beta application has been received. If approved, we will contact you by email.","ok");
       form.reset();
       otherWrap.hidden=true;
       roleOther.required=false;
-      status.scrollIntoView({behavior:'smooth',block:'center'});
+      status.scrollIntoView({behavior:"smooth",block:"center"});
     }catch(error){
-      show(error?.message||'We could not submit your application. Please try again or email bigboomcreations@gmail.com.','err');
+      show((error&&error.message)||"We could not submit your application. Please try again or email bigboomcreations@gmail.com.","err");
     }finally{
       submit.disabled=false;
-      submit.textContent='Submit Beta Application';
+      submit.textContent="Submit My Beta Application";
     }
   });
 })();
